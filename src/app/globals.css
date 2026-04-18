@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Light theme (DEFAULT — matches toukoum.fr) ───────────────────────────── */
+:root {
+  --bg: #ffffff;
+  --surface: #f5f5f5;
+  --border: #e5e5e5;
+  --text: #0f0f0f;
+  --text-muted: #6b7280;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --input-bg: #f5f5f5;
+  --card-bg: #ffffff;
+  --card-border: #e5e5e5;
+  --watermark: rgba(0, 0, 0, 0.03);
+  --shadow: rgba(0, 0, 0, 0.08);
+}
+
+/* ── Dark theme ───────────────────────────────────────────────────────────── */
+.dark {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #f0f0f0;
+  --text-muted: #71717a;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --input-bg: #161616;
+  --card-bg: #111111;
+  --card-border: rgba(255, 255, 255, 0.07);
+  --watermark: rgba(255, 255, 255, 0.04);
+  --shadow: rgba(0, 0, 0, 0.4);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  height: 100%;
+  /* Hide the page-level scrollbar (the grey edge line on the right) */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-y: scroll;
+}
+html::-webkit-scrollbar { display: none; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Outfit", "Geist", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+
+/* ── Blob morph animation ─────────────────────────────────────────────────── */
+@keyframes blobMorph {
+  0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%  { border-radius: 40% 60% 60% 40% / 30% 60% 40% 70%; }
+  50%  { border-radius: 30% 70% 70% 30% / 50% 40% 60% 50%; }
+  75%  { border-radius: 70% 30% 40% 60% / 40% 70% 30% 60%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+/* ── Message fade-in ──────────────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Prose overrides for chat bubbles ─────────────────────────────────────── */
+.prose-chat { font-size: 0.875rem; line-height: 1.65; }
+.prose-chat p { margin: 0.2rem 0; }
+.prose-chat p:first-child { margin-top: 0; }
+.prose-chat p:last-child { margin-bottom: 0; }
+.prose-chat ul, .prose-chat ol { padding-left: 1.25rem; margin: 0.4rem 0; }
+.prose-chat li { margin: 0.15rem 0; }
+.prose-chat strong { font-weight: 600; }
+.prose-chat code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.78em;
+  background: rgba(37,99,235,0.08);
+  color: #2563eb;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+.dark .prose-chat code { background: rgba(96,165,250,0.12); color: #93c5fd; }
+.prose-chat pre {
+  background: #f8f9fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  overflow-x: auto;
+  margin: 0.5rem 0;
+}
+.dark .prose-chat pre { background: #1a1a1a; border-color: #2a2a2a; }
+.prose-chat pre code { background: transparent; padding: 0; color: #374151; }
+.dark .prose-chat pre code { color: #d1d5db; }
+.prose-chat a { color: #2563eb; text-decoration: none; }
+.dark .prose-chat a { color: #60a5fa; }
+.prose-chat h1, .prose-chat h2, .prose-chat h3 {
+  font-weight: 700;
+  color: #111827;
+  margin: 0.6rem 0 0.3rem;
+}
+.dark .prose-chat h1, .dark .prose-chat h2, .dark .prose-chat h3 { color: #f0f0f0; }
+/* Dark mode base text — ensures all inline markdown text is readable */
+.dark .prose-chat { color: #e4e4e7; }
+.dark .prose-chat p { color: #e4e4e7; }
+.dark .prose-chat li { color: #e4e4e7; }
+.dark .prose-chat strong { color: #f4f4f5; }
