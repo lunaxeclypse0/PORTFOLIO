@@ -18,7 +18,7 @@ export default function RainbowCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<Particle[]>([]);
   const hue = useRef(0);
-  const raf = useRef<number>();
+  const raf = useRef<number | null>(null);
   const lastPos = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
