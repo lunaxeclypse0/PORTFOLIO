@@ -67,7 +67,7 @@ export default function AboutCard() {
             {/* Age + Location */}
             <div className="flex items-center flex-wrap gap-x-2 gap-y-0.5 mt-1">
               <span className="text-xs text-gray-400 dark:text-zinc-500">
-                22 years old
+                23 years old
               </span>
               <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-zinc-600" />
               <div className="flex items-center gap-1 text-xs text-gray-400 dark:text-zinc-500">
