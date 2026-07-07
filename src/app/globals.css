@@ -2,43 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Light theme (DEFAULT — matches toukoum.fr) ───────────────────────────── */
+/* ── Light theme ───────────────────────────────────────────────────────────── */
 :root {
-  --bg: #ffffff;
-  --surface: #f5f5f5;
-  --border: #e5e5e5;
-  --text: #0f0f0f;
-  --text-muted: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --input-bg: #f5f5f5;
-  --card-bg: #ffffff;
-  --card-border: #e5e5e5;
-  --watermark: rgba(0, 0, 0, 0.03);
-  --shadow: rgba(0, 0, 0, 0.08);
+  --bg:              #ffffff;
+  --bg-alpha:        rgba(255, 255, 255, 0.85);
+  --surface:         #f5f5f5;
+  --border:          #e5e5e5;
+  --text:            #0f0f0f;
+  --text-muted:      #6b7280;
+  --accent:          #6366f1;
+  --accent-2:        #8b5cf6;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --accent-shadow:   rgba(99, 102, 241, 0.3);
+  --input-bg:        rgba(0, 0, 0, 0.04);
+  --card-bg:         rgba(255, 255, 255, 0.9);
+  --card-border:     rgba(0, 0, 0, 0.08);
+  --border-glass:    rgba(0, 0, 0, 0.06);
+  --watermark:       rgba(0, 0, 0, 0.03);
+  --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md:       0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg:       0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* ── Dark theme ───────────────────────────────────────────────────────────── */
+/* ── Dark theme ────────────────────────────────────────────────────────────── */
 .dark {
-  --bg: #0a0a0a;
-  --surface: #111111;
-  --border: rgba(255, 255, 255, 0.08);
-  --text: #f0f0f0;
-  --text-muted: #71717a;
-  --accent: #3b82f6;
-  --accent-hover: #60a5fa;
-  --input-bg: #161616;
-  --card-bg: #111111;
-  --card-border: rgba(255, 255, 255, 0.07);
-  --watermark: rgba(255, 255, 255, 0.04);
-  --shadow: rgba(0, 0, 0, 0.4);
+  --bg:              #0a0a0a;
+  --bg-alpha:        rgba(10, 10, 10, 0.85);
+  --surface:         #111111;
+  --border:          rgba(255, 255, 255, 0.1);
+  --text:            #f0f0f0;
+  --text-muted:      #71717a;
+  --accent:          #818cf8;
+  --accent-2:        #a78bfa;
+  --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --accent-shadow:   rgba(99, 102, 241, 0.4);
+  --input-bg:        rgba(255, 255, 255, 0.06);
+  --card-bg:         rgba(255, 255, 255, 0.05);
+  --card-border:     rgba(255, 255, 255, 0.08);
+  --border-glass:    rgba(255, 255, 255, 0.06);
+  --watermark:       rgba(255, 255, 255, 0.025);
+  --shadow-sm:       0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md:       0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg:       0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* ── Base ─────────────────────────────────────────────────────────────────── */
+/* ── Base ──────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html {
   height: 100%;
-  /* Hide the page-level scrollbar (the grey edge line on the right) */
   scrollbar-width: none;
   -ms-overflow-style: none;
   overflow-y: scroll;
@@ -54,13 +65,34 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+/* ── Scrollbar ─────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.12); border-radius: 4px; }
-.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 4px; }
+.dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); }
 
-/* ── Blob morph animation ─────────────────────────────────────────────────── */
+/* ── Glass card utility ─────────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Accent badge utility ───────────────────────────────────────────────────── */
+.accent-badge {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(99, 102, 241, 0.18);
+}
+.dark .accent-badge {
+  background: rgba(129, 140, 248, 0.12);
+  color: var(--accent);
+  border-color: rgba(129, 140, 248, 0.2);
+}
+
+/* ── Blob morph animation ───────────────────────────────────────────────────── */
 @keyframes blobMorph {
   0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
   25%  { border-radius: 40% 60% 60% 40% / 30% 60% 40% 70%; }
@@ -69,13 +101,13 @@ body {
   100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
 }
 
-/* ── Message fade-in ──────────────────────────────────────────────────────── */
+/* ── Message fade-in ────────────────────────────────────────────────────────── */
 @keyframes fadeSlideUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Prose overrides for chat bubbles ─────────────────────────────────────── */
+/* ── Prose chat bubbles ─────────────────────────────────────────────────────── */
 .prose-chat { font-size: 0.875rem; line-height: 1.65; }
 .prose-chat p { margin: 0.2rem 0; }
 .prose-chat p:first-child { margin-top: 0; }
@@ -86,12 +118,12 @@ body {
 .prose-chat code {
   font-family: "JetBrains Mono", monospace;
   font-size: 0.78em;
-  background: rgba(37,99,235,0.08);
-  color: #2563eb;
+  background: rgba(99,102,241,0.08);
+  color: var(--accent);
   padding: 0.1em 0.4em;
   border-radius: 4px;
 }
-.dark .prose-chat code { background: rgba(96,165,250,0.12); color: #93c5fd; }
+.dark .prose-chat code { background: rgba(129,140,248,0.12); color: #a5b4fc; }
 .prose-chat pre {
   background: #f8f9fa;
   border: 1px solid #e5e7eb;
@@ -103,15 +135,12 @@ body {
 .dark .prose-chat pre { background: #1a1a1a; border-color: #2a2a2a; }
 .prose-chat pre code { background: transparent; padding: 0; color: #374151; }
 .dark .prose-chat pre code { color: #d1d5db; }
-.prose-chat a { color: #2563eb; text-decoration: none; }
-.dark .prose-chat a { color: #60a5fa; }
+.prose-chat a { color: var(--accent); text-decoration: none; }
 .prose-chat h1, .prose-chat h2, .prose-chat h3 {
   font-weight: 700;
-  color: #111827;
+  color: var(--text);
   margin: 0.6rem 0 0.3rem;
 }
-.dark .prose-chat h1, .dark .prose-chat h2, .dark .prose-chat h3 { color: #f0f0f0; }
-/* Dark mode base text — ensures all inline markdown text is readable */
 .dark .prose-chat { color: #e4e4e7; }
 .dark .prose-chat p { color: #e4e4e7; }
 .dark .prose-chat li { color: #e4e4e7; }

@@ -36,7 +36,7 @@ export default function AboutCard() {
           {!imgError ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
-              src="/projects/grad pic.jpeg"
+              src="/P.jpeg"
               alt="Lance Geeffrey De Castro"
               onError={() => setImgError(true)}
               className="w-full h-full object-cover object-top"
